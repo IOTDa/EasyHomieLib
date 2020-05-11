@@ -305,11 +305,12 @@ bool HomieProperty::SetValueConstrained(const String & strNewValue)
 	return true;
 }
 
-void HomieProperty::OnMqttMessage(char* topic, char* payload, AsyncMqttClientMessageProperties & properties, size_t len, size_t index, size_t total)
+//void HomieProperty::OnMqttMessage(char* topic, char* payload, AsyncMqttClientMessageProperties & properties, size_t len, size_t index, size_t total)
+void HomieProperty::OnMqttMessage(char* topic, char* payload, size_t len, size_t index, size_t total)
 {
-	if(properties.retain || total)	//squelch unused parameter warnings
+	/*if(properties.retain || total)	//squelch unused parameter warnings
 	{
-	}
+	}*/
 
 	if(index==0)
 	{

@@ -5,11 +5,11 @@ void HomieLibDebugPrint(const char * szText);
 #define csprintf(...) { char szTemp[256]; sprintf(szTemp,__VA_ARGS__ ); HomieLibDebugPrint(szTemp); }
 
 
-#if defined(ARDUINO_ARCH_ESP8266)
+/*#if defined(ARDUINO_ARCH_ESP8266)
 #include <ESP8266WiFi.h>
 #else
 #include "WiFi.h"
-#endif
+#endif*/
 
 
 static std::vector<HomieDebugPrintCallback> vecDebugPrint;
@@ -280,7 +280,7 @@ void HomieDevice::onConnect(bool sessionPresent)
 
 }
 
-void HomieDevice::onDisconnect(AsyncMqttClientDisconnectReason reason)
+/*void HomieDevice::onDisconnect(AsyncMqttClientDisconnectReason reason)
 {
 	if(reason==AsyncMqttClientDisconnectReason::TCP_DISCONNECTED)
 	{
@@ -298,9 +298,10 @@ void HomieDevice::onDisconnect(AsyncMqttClientDisconnectReason reason)
 	{
 		csprintf("MQTT server connection lost\n");
 	}
-}
+}*/
 
-void HomieDevice::onMqttMessage(char* topic, char* payload, AsyncMqttClientMessageProperties properties, size_t len, size_t index, size_t total)
+//void HomieDevice::onMqttMessage(char* topic, char* payload, AsyncMqttClientMessageProperties properties, size_t len, size_t index, size_t total)
+void HomieDevice::onMqttMessage(char* topic, char* payload, size_t len, size_t index, size_t total)
 {
 	String strTopic=topic;
 	_map_incoming::const_iterator citer=mapIncoming.find(strTopic);
@@ -311,8 +312,8 @@ void HomieDevice::onMqttMessage(char* topic, char* payload, AsyncMqttClientMessa
 		if(pProp)
 		{
 
-			pProp->OnMqttMessage(topic, payload, properties, len, index, total);
-
+			//pProp->OnMqttMessage(topic, payload, properties, len, index, total);
+			pProp->OnMqttMessage(topic, payload, len, index, total);
 		}
 	}
 

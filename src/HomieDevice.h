@@ -1,6 +1,6 @@
 #pragma once
-
-#include "AsyncMqttClient.h"
+#include <StandardCplusplus.h>
+//#include "AsyncMqttClient.h"
 #include "HomieNode.h"
 #include <map>
 
@@ -66,8 +66,9 @@ private:
 	unsigned long ulLastReconnect=0;
 
 	void onConnect(bool sessionPresent);
-	void onDisconnect(AsyncMqttClientDisconnectReason reason);
-	void onMqttMessage(char* topic, char* payload, AsyncMqttClientMessageProperties properties, size_t len, size_t index, size_t total);
+	//void onDisconnect(AsyncMqttClientDisconnectReason reason);
+	//void onMqttMessage(char* topic, char* payload, AsyncMqttClientMessageProperties properties, size_t len, size_t index, size_t total);
+    void onMqttMessage(char* topic, char* payload, size_t len, size_t index, size_t total);
 
 	bool bConnecting=false;
 

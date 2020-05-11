@@ -1,6 +1,6 @@
 #pragma once
 #include "arduino.h"
-
+#include <StandardCplusplus.h>
 #include <functional>
 
 class HomieProperty;
@@ -59,7 +59,8 @@ public:
 
 	bool Publish();
 
-	void OnMqttMessage(char* topic, char* payload, AsyncMqttClientMessageProperties & properties, size_t len, size_t index, size_t total);
+	//void OnMqttMessage(char* topic, char* payload, AsyncMqttClientMessageProperties & properties, size_t len, size_t index, size_t total);
+	void OnMqttMessage(char* topic, char* payload, size_t len, size_t index, size_t total);
 
 private:
 	String strTopic;
